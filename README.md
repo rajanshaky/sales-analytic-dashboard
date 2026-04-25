@@ -22,3 +22,10 @@ Raw Data (CSV) → Python (EDA & Cleaning) → SQL (Querying) → Power BI (Dash
 - Wisconsin leads in both total sales ($15.61K) and profit ($1.76K)
 - Technology & Furniture are top performing categories
 - Sales trend analyzed across 2022 and 2023
+
+## Project Files
+- `main.ipynb` — Python EDA and data cleaning
+- `data_analysis.sql` — SQL queries for analysis
+- `P1.2_orders.pbix` — Power BI dashboard file
+- `orders.csv` / `filtered_orders.csv` — Raw data sources
+- `eu8_01.jpg` — Image asset used in Power BI report
