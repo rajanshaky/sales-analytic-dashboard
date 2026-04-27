@@ -1,31 +1,55 @@
-# Sales Analytics Dashboard
+# Job Market Pulse — End-to-End Data Pipeline & Analysis
 
-An end-to-end sales analytics project built using Python, SQL, and Power BI,
-analyzing order data across regions, categories, and time periods.
+A complete data analytics project that ingests orders data from Kaggle,
+processes it with Python, loads it into MySQL, performs SQL analysis,
+and visualizes insights through an interactive Power BI dashboard.
 
-## Project Workflow
-Raw Data (CSV) → Python (EDA & Cleaning) → SQL (Querying) → Power BI (Dashboard)
-
-## Dashboard Pages
-- **Dashboard** — Monthly sales trend, sales & profit by state
-- **Sales Performance Report** — Detailed sales breakdown
-- **Profit Performance Report** — Profit analysis by category & state
-- **Regional Report** — Geographic performance comparison
+## Project Pipeline
+Kaggle API → Python (Cleaning & EDA) → MySQL (Storage) → SQL (Analysis) → Power BI (Dashboard)
 
 ## Tools Used
-- Python (Pandas, NumPy, Matplotlib)
-- SQL
+- Python (Pandas, SQLAlchemy, PyMySQL, python-dotenv, Matplotlib, Seaborn)
+- Kaggle API
+- MySQL
 - Power BI Desktop
 - Jupyter Notebook
 
-## Key Insights
-- Wisconsin leads in both total sales ($15.61K) and profit ($1.76K)
-- Technology & Furniture are top performing categories
-- Sales trend analyzed across 2022 and 2023
-
 ## Project Files
-- `main.ipynb` — Python EDA and data cleaning
-- `data_analysis.sql` — SQL queries for analysis
-- `P1.2_orders.pbix` — Power BI dashboard file
-- `orders.csv` / `filtered_orders.csv` — Raw data sources
-- `eu8_01.jpg` — Image asset used in Power BI report
+- `main.ipynb` — Full pipeline: data ingestion, cleaning, EDA and visualizations
+- `data_analysis.sql` — SQL queries for business analysis
+- `filtered_orders.csv` — Cleaned orders dataset (9,994 rows)
+
+## Key Insights
+
+### 📊 Sales by Category
+- Technology leads with $806K in sales and 9.47% profit margin
+- All 3 categories are profitable
+
+### 🌍 Top Performing States
+- California dominates with $441K in sales and $40K profit
+- New York and Texas follow closely
+
+### 📈 Monthly Sales Trend
+- Consistent monthly sales between $80K–$94K
+- Peaks observed in Q4 each year
+
+### 🏆 Best Sub-Categories
+- Chairs ($29K profit) and Phones ($28K profit) are top performers
+- Binders have highest order volume (1,523 orders)
+
+### 🌎 Region & Segment
+- East Consumer segment is strongest ($338K sales)
+- Central Home Office is the weakest segment ($87K sales)
+
+### ❌ Loss Making Orders
+- Several orders recorded exactly -$5 profit
+- Concentrated in Technology and Furniture categories
+- Likely caused by heavy discounting
+
+## Security
+- Database credentials stored in `.env` file
+- `.env` excluded from version control via `.gitignore`
+
+## Setup
+1. Clone the repo
+2. Create a `.env` file with your MySQL credentials:
