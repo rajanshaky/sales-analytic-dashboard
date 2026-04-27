@@ -52,4 +52,5 @@ Kaggle API → Python (Cleaning & EDA) → MySQL (Storage) → SQL (Analysis) �
 
 ## Setup
 1. Clone the repo
-2. Create a `.env` file with your MySQL credentials:
+2. Create a `.env` file with your MySQL credentials: MYSQL_PASSWORD=your_password_here
+3. Run `main.ipynb` cells sequentially
