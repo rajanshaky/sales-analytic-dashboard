@@ -25,21 +25,29 @@ Kaggle API → Python (Cleaning & EDA) → MySQL (Storage) → SQL (Analysis) �
 - Technology leads with $806K in sales and 9.47% profit margin
 - All 3 categories are profitable
 
+![](assets/sales_by_category.png)
+
 ### 🌍 Top Performing States
 - California dominates with $441K in sales and $40K profit
 - New York and Texas follow closely
 
-### 📈 Monthly Sales Trend
-- Consistent monthly sales between $80K–$94K
-- Peaks observed in Q4 each year
+![](assets/monthly_trend.png)
 
 ### 🏆 Best Sub-Categories
 - Chairs ($29K profit) and Phones ($28K profit) are top performers
 - Binders have highest order volume (1,523 orders)
 
+![](assets/top_subcategories.png)
+
 ### 🌎 Region & Segment
 - East Consumer segment is strongest ($338K sales)
 - Central Home Office is the weakest segment ($87K sales)
+
+![](assets/sales_by_region.png)
+
+### 📈 Monthly Sales Trend
+- Consistent monthly sales between $80K–$94K
+- Peaks observed in Q4 each year
 
 ### ❌ Loss Making Orders
 - Several orders recorded exactly -$5 profit
