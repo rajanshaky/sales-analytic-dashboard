@@ -21,6 +21,10 @@ Kaggle API → Python (Cleaning & EDA) → MySQL (Storage) → SQL (Analysis) �
 
 ## Key Insights
 
+## Dashboard
+
+![](assets/Dashboard.png)
+
 ### 📊 Sales by Category
 - Technology leads with $806K in sales and 9.47% profit margin
 - All 3 categories are profitable
