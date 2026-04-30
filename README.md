@@ -54,6 +54,12 @@ Kaggle API → Python (Cleaning & EDA) → MySQL (Storage) → SQL (Analysis) �
 - Concentrated in Technology and Furniture categories
 - Likely caused by heavy discounting
 
+## 📊 Key Insights
+
+- Identified top-performing products driving revenue  
+- Analyzed sales trends across time periods  
+- Highlighted revenue concentration across categories  
+
 ## Security
 - Database credentials stored in `.env` file
 - `.env` excluded from version control via `.gitignore`
