@@ -1,5 +1,5 @@
 -- ================================================
--- Job Market Pulse — Sales Data Analysis
+-- Sales Data Analysis
 -- Database: company | Table: df_orders
 -- ================================================
 
@@ -64,4 +64,3 @@ select
 from df_orders
 group by region, segment
 order by region, total_sales DESC;
-
