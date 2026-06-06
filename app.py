@@ -50,7 +50,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # ── DB ──
-@st.cache_resource
+'''@st.cache_resource
 def get_engine():
     user     = os.getenv('RAILWAY_MYSQL_USER', 'root')
     password = os.getenv('RAILWAY_MYSQL_PASSWORD', '')
@@ -61,12 +61,22 @@ def get_engine():
         f"mysql+pymysql://{user}:{password}@{host}:{port}/{database}",
         pool_pre_ping=True,
         pool_recycle=1800
-    )
+    )'''
 
 @st.cache_data(ttl=3600)
 def load_data():
     try:
-        df = pd.read_sql("SELECT * FROM df_orders", get_engine())
+        user     = os.getenv('RAILWAY_MYSQL_USER', 'root')
+        password = os.getenv('RAILWAY_MYSQL_PASSWORD', '')
+        host     = os.getenv('RAILWAY_MYSQL_HOST', 'localhost')
+        port     = os.getenv('RAILWAY_MYSQL_PORT', '3306')
+        database = os.getenv('RAILWAY_MYSQL_DATABASE', 'railway')
+        engine = sal.create_engine(
+            f"mysql+pymysql://{user}:{password}@{host}:{port}/{database}",
+            pool_pre_ping=True,
+            pool_recycle=1800
+        )
+        df = pd.read_sql("SELECT * FROM df_orders", engine)
         df.columns = [c.lower().strip() for c in df.columns]
         df['order_date'] = pd.to_datetime(df['order_date'])
         df['month'] = df['order_date'].dt.month
