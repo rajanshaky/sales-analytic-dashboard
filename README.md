@@ -1,74 +1,223 @@
-# Job Market Pulse — End-to-End Data Pipeline & Analysis
+# 📦 Sales Analytics Dashboard — Superstore Data Analysis
 
-A complete data analytics project that ingests orders data from Kaggle,
-processes it with Python, loads it into MySQL, performs SQL analysis,
-and visualizes insights through an interactive Power BI dashboard.
+[![Live Dashboard](https://img.shields.io/badge/Live-Dashboard-brightgreen)](https://sales-analytic-dashboard.streamlit.app)
+[![Python](https://img.shields.io/badge/Python-3.10+-blue)](https://python.org)
+[![MySQL](https://img.shields.io/badge/MySQL-Railway-orange)](https://railway.app)
+[![Streamlit](https://img.shields.io/badge/Streamlit-Deployed-red)](https://streamlit.io)
 
-## Project Pipeline
-Kaggle API → Python (Cleaning & EDA) → MySQL (Storage) → SQL (Analysis) → Power BI (Dashboard)
+An end-to-end data analytics project that ingests Superstore orders data, processes it with Python, stores it in a cloud MySQL database, performs SQL analysis, and visualizes insights through both a Power BI dashboard and a live public Streamlit dashboard.
 
-## Tools Used
-- Python (Pandas, SQLAlchemy, PyMySQL, python-dotenv, Matplotlib, Seaborn)
-- Kaggle API
-- MySQL
-- Power BI Desktop
-- Jupyter Notebook
+🔗 **Live Dashboard:** [sales-analytic-dashboard.streamlit.app](https://sales-analytic-dashboard.streamlit.app)
 
-## Project Files
-- `main.ipynb` — Full pipeline: data ingestion, cleaning, EDA and visualizations
-- `data_analysis.sql` — SQL queries for business analysis
-- `filtered_orders.csv` — Cleaned orders dataset (9,994 rows)
+---
 
-## Key Insights
+## 📌 Objective
 
-## Dashboard
+To analyze Superstore sales data and identify:
+- Top performing categories, regions and states
+- Monthly sales and profit trends
+- Loss-making orders and discount impact
+- Regional and segment-level performance
 
-![](assets/Dashboard.png)
+---
 
-### 📊 Sales by Category
-- Technology leads with $806K in sales and 9.47% profit margin
-- All 3 categories are profitable
+## ⚙️ Tech Stack
 
-![](assets/sales_by_category.png)
+| Category        | Technologies                        |
+| --------------- | ----------------------------------- |
+| Programming     | Python                              |
+| Database        | MySQL (Railway Cloud)               |
+| Data Processing | Pandas, SQLAlchemy                  |
+| Analysis        | SQL, Jupyter Notebook               |
+| Visualization   | Power BI, Streamlit, Plotly         |
+| Deployment      | Streamlit Cloud + Railway           |
+| Environment     | Virtual Environment (.venv)         |
 
-### 🌍 Top Performing States
-- California dominates with $441K in sales and $40K profit
-- New York and Texas follow closely
+---
 
-![](assets/monthly_trend.png)
+## 📂 Project Structure
 
-### 🏆 Best Sub-Categories
-- Chairs ($29K profit) and Phones ($28K profit) are top performers
-- Binders have highest order volume (1,523 orders)
+```
+sales_analytic_dashboard/
+│
+├── assets/
+│   ├── Dashboard.png
+│   ├── sales_by_category.png
+│   ├── monthly_trend.png
+│   ├── top_subcategories.png
+│   └── sales_by_region.png
+│
+├── app.py                  # Streamlit dashboard
+├── main.ipynb              # Full pipeline: ingestion, cleaning, EDA
+├── data_analysis.sql       # SQL queries for business analysis
+├── filtered_orders.csv     # Cleaned orders dataset (9,994 rows)
+├── Dashboard.pbix          # Power BI dashboard
+├── .env.example
+├── .gitignore
+├── requirements.txt
+└── README.md
+```
 
-![](assets/top_subcategories.png)
+---
 
-### 🌎 Region & Segment
-- East Consumer segment is strongest ($338K sales)
-- Central Home Office is the weakest segment ($87K sales)
+## 🔄 Pipeline
 
-![](assets/sales_by_region.png)
+```
+Kaggle / CSV Data
+      ↓
+Python (cleaning + EDA + feature engineering)
+      ↓
+MySQL on Railway (cloud database)
+      ↓
+SQL Analysis
+      ↓
+Power BI Dashboard (.pbix)
+      +
+Streamlit Dashboard (sales-analytic-dashboard.streamlit.app)
+```
 
-### 📈 Monthly Sales Trend
-- Consistent monthly sales between $80K–$94K
-- Peaks observed in Q4 each year
+---
 
-### ❌ Loss Making Orders
-- Several orders recorded exactly -$5 profit
-- Concentrated in Technology and Furniture categories
-- Likely caused by heavy discounting
+## 📊 Power BI Dashboard
 
-## 📊 Key Insights
+Built a multi-page interactive Power BI dashboard covering:
 
-- Identified top-performing products driving revenue  
-- Analyzed sales trends across time periods  
-- Highlighted revenue concentration across categories  
+### Page 1 — Dashboard
+- Monthly sales trend (sales, profit, orders)
+- Sales and profit by state
+- Total sales by category (region breakdown)
+- Profit by category and state
 
-## Security
+### Page 2 — Sales Performance Report
+- Sales by category bar chart
+- Monthly sales trend
+- Category × region breakdown table
+- Total sales donut chart + KPI
+
+### Page 3 — Profit Performance Report
+- Profit by category
+- Monthly profit trend
+- Category × region profit table
+- Total profit donut chart + margin KPI
+
+### Page 4 — Regional Report
+- Sales and profit maps by state
+- Total sales vs target gauge
+- Orders and quantity KPIs
+
+![Dashboard Preview](assets/Dashboard.png)
+
+---
+
+## 🌐 Streamlit Live Dashboard
+
+Since Power BI requires a Pro license for public sharing, the dashboard was rebuilt using **Streamlit + Plotly** and deployed publicly on Streamlit Cloud — connected to the same cloud MySQL database on Railway.
+
+🔗 **[sales-analytic-dashboard.streamlit.app](https://sales-analytic-dashboard.streamlit.app)**
+
+### Features
+- 4 pages matching Power BI layout
+- Year and category filters
+- KPI cards, bar charts, line charts, donut charts, data tables
+- Fully public — no login required
+
+---
+
+## 📈 Key Insights
+
+- **Technology leads with $806K in sales** and 9.47% profit margin — all 3 categories profitable
+- **California dominates** with $441K in sales and $40K profit
+- **Chairs ($29K) and Phones ($28K)** are top profit sub-categories
+- **East Consumer segment** is strongest at $338K sales
+- **Q4 peaks** observed consistently each year
+- **Loss-making orders** concentrated in Technology and Furniture — likely caused by heavy discounting
+
+---
+
+## 📋 Dataset Summary
+
+| Metric | Value |
+|---|---|
+| Total Orders | 9,994 |
+| Total Sales | $1.10M |
+| Total Profit | $205.2K |
+| Profit Margin | 9.3% |
+| Categories | 3 |
+| States | 49 |
+| Regions | 4 |
+
+---
+
+## ▶️ How to Run Locally
+
+### 1. Clone the Repository
+```bash
+git clone https://github.com/rajanshaky/sales-analytic-dashboard.git
+cd sales-analytic-dashboard
+```
+
+### 2. Create & Activate Virtual Environment
+```bash
+python -m venv .venv
+.venv\Scripts\activate   # Windows
+```
+
+### 3. Install Dependencies
+```bash
+pip install -r requirements.txt
+```
+
+### 4. Configure Environment Variables
+Create a `.env` file:
+```env
+MYSQL_HOST=your_host
+MYSQL_PORT=3306
+MYSQL_USER=your_user
+MYSQL_PASSWORD=your_password
+MYSQL_DATABASE=your_database
+```
+
+### 5. Run the Pipeline
+```bash
+jupyter notebook main.ipynb
+```
+
+### 6. Launch the Dashboard
+```bash
+streamlit run app.py
+```
+
+---
+
+## 🧠 Skills Demonstrated
+
+- Python data processing with Pandas
+- ETL pipeline development
+- SQL business analysis
+- Cloud MySQL management (Railway)
+- Power BI dashboard development (4 pages)
+- Streamlit + Plotly interactive dashboards
+- Cloud deployment (Streamlit Cloud)
+- End-to-end analytics workflow
+
+---
+
+## 🔒 Security
+
 - Database credentials stored in `.env` file
 - `.env` excluded from version control via `.gitignore`
 
-## Setup
-1. Clone the repo
-2. Create a `.env` file with your MySQL credentials: MYSQL_PASSWORD=your_password_here
-3. Run `main.ipynb` cells sequentially
+---
+
+## 👨‍💻 Author
+
+**Rajan Shaky**
+Aspiring Data Analyst | Python • SQL • Power BI • Streamlit
+
+[![GitHub](https://img.shields.io/badge/GitHub-rajanshaky-black)](https://github.com/rajanshaky)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue)](https://linkedin.com/in/rajanshaky)
+
+---
+
+⭐ If you found this project useful, consider starring the repository!
+
