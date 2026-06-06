@@ -5,8 +5,6 @@
 
 USE company;
 
-use company;
-
 # Total sales and profit by caregory 
 select 
 	category,
@@ -66,3 +64,4 @@ select
 from df_orders
 group by region, segment
 order by region, total_sales DESC;
+
