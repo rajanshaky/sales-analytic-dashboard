@@ -52,11 +52,11 @@ st.markdown("""
 # ── DB ──
 @st.cache_resource
 def get_engine():
-    user     = os.getenv('LOCAL_MYSQL_USER', 'root')
-    password = os.getenv('LOCAL_MYSQL_PASSWORD', '')
-    host     = 'localhost'
-    port     = '3306'
-    database = os.getenv('LOCAL_MYSQL_DATABASE', 'company')
+    user     = os.getenv('RAILWAY_MYSQL_USER', 'root')
+    password = os.getenv('RAILWAY_MYSQL_PASSWORD', '')
+    host     = os.getenv('RAILWAY_MYSQL_HOST', 'localhost')
+    port     = os.getenv('RAILWAY_MYSQL_PORT', '3306')
+    database = os.getenv('RAILWAY_MYSQL_DATABASE', 'sales_db')
     return sal.create_engine(
         f"mysql+pymysql://{user}:{password}@{host}:{port}/{database}",
         pool_pre_ping=True,
@@ -106,7 +106,16 @@ with st.sidebar:
 
     years = sorted(df_full['year'].unique().tolist())
     st.markdown("<div style='font-size:12px;color:#5a7a9a;margin-bottom:6px;font-weight:500'>FILTER BY YEAR</div>", unsafe_allow_html=True)
-    selected_years = st.multiselect("Year", years, default=years, label_visibility="collapsed")
+    year_cols = st.columns(len(years))
+    selected_years = []
+    for i, yr in enumerate(years):
+        with year_cols[i]:
+            if st.button(str(yr), key=f"yr_{yr}", use_container_width=True):
+                if yr not in st.session_state.get('sel_years', years):
+                    st.session_state.sel_years = years.copy()
+                else:
+                    st.session_state.sel_years = [yr]
+    selected_years = st.session_state.get('sel_years', years)
 
     st.markdown("<div style='font-size:12px;color:#5a7a9a;margin-top:12px;margin-bottom:6px;font-weight:500'>FILTER BY CATEGORY</div>", unsafe_allow_html=True)
     cats = sorted(df_full['category'].unique().tolist())
@@ -171,8 +180,8 @@ if page == "📊 Dashboard":
             line=dict(color='#3a5a7a', width=1.5, dash='dot'), mode='lines+markers',
             marker=dict(size=4)))
         fig.update_layout(**PLOTLY_THEME, height=320, margin=dict(l=10,r=10,t=20,b=60),
-            legend=dict(font=dict(color='#8ba3be', size=10), orientation='h', yanchor='bottom', y=1.02),
-            xaxis=dict(tickangle=-45, tickfont=dict(size=9)))
+            legend=dict(font=dict(color='#8ba3be', size=10), orientation='h', yanchor='bottom', y=1.02))
+        fig.update_xaxes(tickangle=-45, tickfont=dict(size=9))
         st.plotly_chart(fig, use_container_width=True)
 
     with col2:
@@ -201,8 +210,8 @@ if page == "📊 Dashboard":
                 textposition='outside', textfont=dict(size=8)))
         fig3.update_layout(**PLOTLY_THEME, barmode='group', height=300,
             margin=dict(l=10,r=10,t=10,b=60), showlegend=True,
-            legend=dict(font=dict(color='#8ba3be', size=9), orientation='h', yanchor='bottom', y=1.02),
-            xaxis=dict(tickangle=-30, tickfont=dict(size=9)))
+            legend=dict(font=dict(color='#8ba3be', size=9), orientation='h', yanchor='bottom', y=1.02))
+        fig3.update_xaxes(tickangle=-30, tickfont=dict(size=9))
         st.plotly_chart(fig3, use_container_width=True)
 
     with col4:
@@ -244,7 +253,8 @@ elif page == "📈 Sales Report":
             text=[f"{v/1000:.0f}K" for v in monthly['sales']], textposition='top center',
             textfont=dict(size=9, color='#c9d1d9'), marker=dict(color=LINE_COLOR, size=5)))
         fig2.update_layout(**PLOTLY_THEME, height=350, margin=dict(l=10,r=10,t=10,b=60),
-            showlegend=False, xaxis=dict(tickangle=-45, tickfont=dict(size=9)))
+            showlegend=False)
+        fig2.update_xaxes(tickangle=-45, tickfont=dict(size=9))
         st.plotly_chart(fig2, use_container_width=True)
 
     with col3:
@@ -416,7 +426,7 @@ elif page == "🗺️ Regional Report":
             Profit=('profit','sum'),
             Orders=('order_id','nunique'),
             Qty=('quantity','sum')
-        ).reset_index()
+        ).reset_index().dropna()
         region_summary['Margin'] = (region_summary['Profit'] / region_summary['Sales'] * 100).round(1).astype(str) + '%'
         region_summary['Sales'] = region_summary['Sales'].apply(fmt)
         region_summary['Profit'] = region_summary['Profit'].apply(fmt)
