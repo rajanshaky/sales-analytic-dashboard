@@ -54,9 +54,9 @@ st.markdown("""
 def get_engine():
     user     = os.getenv('LOCAL_MYSQL_USER', 'root')
     password = os.getenv('LOCAL_MYSQL_PASSWORD', '')
-    host     = os.getenv('LOCAL_MYSQL_HOST', 'localhost')
-    port     = os.getenv('LOCAL_MYSQL_PORT', '3306')
-    database = os.getenv('LOCAL_MYSQL_DATABASE', 'sales_db')
+    host     = 'localhost'
+    port     = '3306'
+    database = os.getenv('LOCAL_MYSQL_DATABASE', 'company')
     return sal.create_engine(
         f"mysql+pymysql://{user}:{password}@{host}:{port}/{database}",
         pool_pre_ping=True,
@@ -327,7 +327,8 @@ elif page == "💰 Profit Report":
             text=[f"{v/1000:.1f}K" for v in monthly['profit']], textposition='top center',
             textfont=dict(size=9, color='#c9d1d9'), marker=dict(color=LINE_COLOR, size=5)))
         fig2.update_layout(**PLOTLY_THEME, height=350, margin=dict(l=10,r=10,t=10,b=60),
-            showlegend=False, xaxis=dict(tickangle=-45, tickfont=dict(size=9)))
+            showlegend=False)
+        fig2.update_xaxes(tickangle=-45, tickfont=dict(size=9))
         st.plotly_chart(fig2, use_container_width=True)
 
     with col3:
