@@ -103,7 +103,6 @@ MONTHS = ['January','February','March','April','May','June','July','August','Sep
 # ── LOAD ──
 df_full = load_data()
 if df_full.empty:
-    st.warning("No data available. Check your database connection.")
     st.stop()
 
 # ── SIDEBAR ──
