@@ -50,18 +50,18 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # ── DB ──
-'''@st.cache_resource
-def get_engine():
-    user     = os.getenv('RAILWAY_MYSQL_USER', 'root')
-    password = os.getenv('RAILWAY_MYSQL_PASSWORD', '')
-    host     = os.getenv('RAILWAY_MYSQL_HOST', 'localhost')
-    port     = os.getenv('RAILWAY_MYSQL_PORT', '3306')
-    database = os.getenv('RAILWAY_MYSQL_DATABASE', 'railway')
-    return sal.create_engine(
-        f"mysql+pymysql://{user}:{password}@{host}:{port}/{database}",
-        pool_pre_ping=True,
-        pool_recycle=1800
-    )'''
+#@st.cache_resource
+#def get_engine():
+#    user     = os.getenv('RAILWAY_MYSQL_USER', 'root')
+#    password = os.getenv('RAILWAY_MYSQL_PASSWORD', '')
+#    host     = os.getenv('RAILWAY_MYSQL_HOST', 'localhost')
+#    port     = os.getenv('RAILWAY_MYSQL_PORT', '3306')
+#    database = os.getenv('RAILWAY_MYSQL_DATABASE', 'railway')
+#    return sal.create_engine(
+#       f"mysql+pymysql://{user}:{password}@{host}:{port}/{database}",
+#        pool_pre_ping=True,
+#        pool_recycle=1800
+#   )
 
 @st.cache_data(ttl=3600)
 def load_data():
